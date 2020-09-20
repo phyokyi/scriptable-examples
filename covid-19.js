@@ -10,10 +10,9 @@ Script.complete()
 
 async function createWidget(data) {
   let w = new ListWidget()
-  w.backgroundColor = new Color("#123456")
-  let title = w.addText("Date : " + v.date);
+  w.backgroundColor = new Color("#2b68a6")
+  let title = w.addText("Myanmar COVID-19 stats");
   title.font = Font.mediumSystemFont(20)
-  w.addText("Myanmar COVID-19 stats");
   w.addSpacer(8)
   
   let v = data;
