@@ -9,25 +9,31 @@ Script.setWidget(widget)
 Script.complete()
 
 async function createWidget(data) {
-  
   let w = new ListWidget()
-    w.backgroundColor = new Color("#123456")
+  w.backgroundColor = new Color("#123456")
+  let title = w.addText("Date : " + v.date);
+  title.font = Font.mediumSystemFont(20)
+  w.addText("Myanmar COVID-19 stats");
+  w.addSpacer(8)
+  
   let v = data;
-   w.addText("Today Positive : " + v.todayCases + " (Total "+ v.cases+")");
-   w.addSpacer(1)
-   w.addText("Today Deceased : " + v.todayDeaths);
-  w.addSpacer(1)
-  w.addText("Total Deceased : " + v.deaths);
-  w.addSpacer(1)
-   w.addText("Active Cases : " + v.active);
-  w.addSpacer(1)
-   w.addText("Total Tests : " + v.totalTests);
-  w.addSpacer(1)
+  w.addText("Today Positive : " + v.todayCases + " (Total "+ v.cases+")");
+  w.addSpacer()
+  w.addText("Today Deceased : " + v.todayDeaths + " (Total "+ v.deaths+")");
+  w.addSpacer(8)
+  let str = "Total Recovered (" + v.recovered + ")";
+  str += " Current Active (" + v.active + ")";
+  str += " Positive per One Million (" + v.casesPerOneMillion + ")";
+  str += " Deaths per One Million (" + v.deathsPerOneMillion + ")";
+  str += " Total Tests (" + v.totalTests + ")";
+  str += " Tests per One Million (" + v.testsPerOneMillion + ")";
+  w.addText(str);
+  w.addSpacer(8)
   let d = new Date()
   d = d.toLocaleString('en-US', { timeZone: 'Asia/Yangon' })
-   let ref= w.addText("Refresh at " + d);
+  let ref= w.addText("Refresh at " + d);
   ref.font = Font.footnote()
-   console.log(v);
+  console.log(v);
   return w
 }
   
@@ -37,4 +43,3 @@ async function loadData() {
   let json = await req.loadJSON()
   return json
 }
-
