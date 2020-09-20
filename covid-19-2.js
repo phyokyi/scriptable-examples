@@ -2,35 +2,39 @@ let data = await loadData()
 let widget = await createWidget(data)
 
 if (!config.runsInWidget) {
-  await widget.presentLarge()
+  await widget.presentMedium()
 }
 
 Script.setWidget(widget)
 Script.complete()
 
 async function createWidget(data) {
+  let tcolor = "#000000";
+  let imgURL = "https://www.pon-cat.com/application/files/7915/8400/2602/home-banner.jpg"
+  
   let w = new ListWidget()
-  w.backgroundColor = new Color("#2b68a6")
   let title = w.addText("Myanmar COVID-19 stats");
   title.font = Font.mediumSystemFont(20)
+  
+  
+  let imgReq = new Request(imgURL);
+  let img = await imgReq.loadImage();
+  w.backgroundImage = img;
+  
   w.addSpacer(8)
   
   let v = data;
-  w.addText("Today Positive : " + v.todayCases + " (Total "+ v.cases+")");
+  let t1 = w.addText("Today Positive : " + v.todayCases + " (Total "+ v.cases+")");
+  t1.textColor = new Color(tcolor)
   w.addSpacer(1)
-  w.addText("Today Deceased : " + v.todayDeaths + " (Total "+ v.deaths+")");
+  let t2 = w.addText("Today Deceased : " + v.todayDeaths + " (Total "+ v.deaths+")");
   w.addSpacer(1)
-  w.addText("Total Recovered : " + v.recovered);
+  t2.textColor = new Color(tcolor)
+  let t3 = w.addText("Total Recovered : " + v.recovered);
   w.addSpacer(1)
-  w.addText("Current Active : " + v.active);
-  w.addSpacer(1)
-  w.addText("Positive per One Million : " + v.casesPerOneMillion);
-  w.addSpacer(1)
-  w.addText("Deaths per One Million : " + v.deathsPerOneMillion);
-  w.addSpacer(1)
-  w.addText("Total Tests : " + v.totalTests);
-  w.addSpacer(1)
-  w.addText("Tests per One Million : " + v.testsPerOneMillion);
+  t3.textColor = new Color(tcolor)
+  let t4 = w.addText("Current Active : " + v.active);
+  t4.textColor = new Color(tcolor)
   w.addSpacer(8)
 
   let d = new Date()
