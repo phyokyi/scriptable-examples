@@ -2,7 +2,7 @@ let data = await loadData()
 let widget = await createWidget(data)
 
 if (!config.runsInWidget) {
-  await widget.presentMedium()
+  await widget.presentLarge()
 }
 
 Script.setWidget(widget)
@@ -20,17 +20,17 @@ async function createWidget(data) {
   w.addSpacer(1)
   w.addText("Today Deceased : " + v.todayDeaths + " (Total "+ v.deaths+")");
   w.addSpacer(1)
-  w.addText("Total Recovered          : " + v.recovered);
+  w.addText("Total Recovered : " + v.recovered);
   w.addSpacer(1)
-  w.addText("Current Active           : " + v.active);
+  w.addText("Current Active : " + v.active);
   w.addSpacer(1)
-  w.addText("Positive per One Million :" + v.casesPerOneMillion);
+  w.addText("Positive per One Million : " + v.casesPerOneMillion);
   w.addSpacer(1)
-  w.addText("Deaths per One Million   : " + v.deathsPerOneMillion);
+  w.addText("Deaths per One Million : " + v.deathsPerOneMillion);
   w.addSpacer(1)
-  w.addText(" Total Tests             : " + v.totalTests);
+  w.addText("Total Tests : " + v.totalTests);
   w.addSpacer(1)
-  w.addText("Tests per One Million    : " + v.testsPerOneMillion);
+  w.addText("Tests per One Million : " + v.testsPerOneMillion);
   w.addSpacer(8)
 
   let d = new Date()
