@@ -17,17 +17,22 @@ async function createWidget(data) {
   
   let v = data;
   w.addText("Today Positive : " + v.todayCases + " (Total "+ v.cases+")");
-  w.addSpacer()
+  w.addSpacer(1)
   w.addText("Today Deceased : " + v.todayDeaths + " (Total "+ v.deaths+")");
+  w.addSpacer(1)
+  w.addText("Total Recovered          : " + v.recovered);
+  w.addSpacer(1)
+  w.addText("Current Active           : " + v.active);
+  w.addSpacer(1)
+  w.addText("Positive per One Million :" + v.casesPerOneMillion);
+  w.addSpacer(1)
+  w.addText("Deaths per One Million   : " + v.deathsPerOneMillion);
+  w.addSpacer(1)
+  w.addText(" Total Tests             : " + v.totalTests);
+  w.addSpacer(1)
+  w.addText("Tests per One Million    : " + v.testsPerOneMillion);
   w.addSpacer(8)
-  let str = "Total Recovered (" + v.recovered + ")";
-  str += " Current Active (" + v.active + ")";
-  str += " Positive per One Million (" + v.casesPerOneMillion + ")";
-  str += " Deaths per One Million (" + v.deathsPerOneMillion + ")";
-  str += " Total Tests (" + v.totalTests + ")";
-  str += " Tests per One Million (" + v.testsPerOneMillion + ")";
-  w.addText(str);
-  w.addSpacer(8)
+
   let d = new Date()
   d = d.toLocaleString('en-US', { timeZone: 'Asia/Yangon' })
   let ref= w.addText("Refresh at " + d);
